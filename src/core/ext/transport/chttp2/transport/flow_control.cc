@@ -377,7 +377,7 @@ FlowControlAction TransportFlowControl::PeriodicUpdate() {
     int32_t frame_size = static_cast<int32_t> GPR_CLAMP(
         GPR_MAX((int32_t)GPR_CLAMP(bw_dbl, 0, INT_MAX) / 1000,
                 target_initial_window_size_),
-        16384, 16777215);
+        16384, 4194303);
     action.set_send_max_frame_size_update(
         DeltaUrgency(static_cast<int64_t>(frame_size),
                      GRPC_CHTTP2_SETTINGS_MAX_FRAME_SIZE),
